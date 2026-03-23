@@ -112,6 +112,14 @@
             transform: translateX(-50%);
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+        #typing-cursor {
+          animation: blink 0.7s infinite;
+          font-weight: 900;
+        }
     </style>
 </head>
 <body class="bg-surface selection:bg-primary-fixed overflow-x-hidden">
@@ -146,27 +154,26 @@
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 <div class="lg:col-span-7 relative">
 <div class="inline-block px-4 py-1 bg-primary text-white font-bold text-xs rotate-[-2deg] mb-8">
-                    WE ARE LIVE! SPACES V2.0
+                    THE EDITORIAL BOOKING PLATFORM
                 </div>
 <h1 class="font-black leading-[0.9] tracking-tight text-on-surface mb-12">
-<span class="text-6xl block mb-2">STOP RUNNING.</span>
-<span class="text-[5rem] md:text-[8rem] block text-primary-container -ml-1">START</span>
-<span class="text-7xl md:text-9xl block italic text-primary">BUILDING.</span>
+<span class="text-6xl md:text-7xl block mb-4">YOUR SPACE</span>
+<span class="text-7xl md:text-9xl block italic text-primary"><span id="typing-text"></span><span id="typing-cursor">|</span></span>
 </h1>
 <p class="text-xl md:text-2xl font-medium text-on-surface leading-snug max-w-lg mb-10">
-                    The software that <span class="underline decoration-primary decoration-4">actually gets out of the way</span>. Beautiful booking for spaces with a soul.
+                    The only booking software designed for operators who care about <span class="underline decoration-primary decoration-4">aesthetics as much as efficiency</span>.
                 </p>
 <div class="flex flex-wrap gap-6 items-center">
-<button class="bg-primary text-white px-10 py-5 rounded-sm font-black text-xl paper-stack border-2 border-on-surface hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+<a href="#contact" class="bg-primary text-white px-10 py-5 rounded-sm font-black text-xl paper-stack border-2 border-on-surface hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all inline-block">
                         START FREE TRIAL
-                    </button>
+                    </a>
 <div class="relative group">
 <span class="absolute -top-6 left-0 text-xs font-bold text-primary italic rotate-[-5deg]">See it in action →</span>
-<button class="underline font-bold text-lg hover:text-primary">Watch the Vibe</button>
+<a href="#contact" class="underline font-bold text-lg hover:text-primary">Watch the Vibe</a>
 </div>
 </div>
 </div>
-<div class="lg:col-span-5 relative mt-12 lg:mt-0">
+<div class="lg:col-span-5 relative mt-12 lg:mt-0 hidden lg:block">
 <div class="relative w-full aspect-[4/5]">
 <div class="absolute inset-0 bg-surface-container rotate-3 border-2 border-on-surface p-3 shadow-xl">
 <div class="tape-element -top-4 left-1/2 -translate-x-1/2"></div>
@@ -336,9 +343,9 @@
 <div class="mt-20 flex flex-col items-center">
 <div class="text-7xl font-black text-primary-container mb-4">$49<span class="text-2xl opacity-40">/mo</span></div>
 <p class="text-sm font-bold opacity-60 mb-10">FLAT FEE. UNLIMITED BOOKINGS. NO PERCENTAGE CUT.</p>
-<button class="bg-primary-container text-on-surface px-12 py-5 text-xl font-black uppercase border-2 border-white hover:bg-white transition-colors">
+<a href="#contact" class="bg-primary-container text-on-surface px-12 py-5 text-xl font-black uppercase border-2 border-white hover:bg-white transition-colors inline-block">
                     CLAIM YOUR SPOT
-                </button>
+                </a>
 </div>
 </div>
 </section>
@@ -407,6 +414,25 @@
   close.addEventListener('click', () => menu.classList.add('hidden'));
   document.querySelectorAll('#mobile-menu a').forEach(link => {
     link.addEventListener('click', () => menu.classList.add('hidden'));
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const text = 'DESERVES BETTER.';
+    const el = document.getElementById('typing-text');
+    const cursor = document.getElementById('typing-cursor');
+    let i = 0;
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          el.textContent = text.substring(0, i + 1);
+          i++;
+        } else {
+          clearInterval(interval);
+          setTimeout(() => { if (cursor) cursor.style.display = 'none'; }, 2000);
+        }
+      }, 100);
+    }, 500);
   });
 </script>
 </body></html>
