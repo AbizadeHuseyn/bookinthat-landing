@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookin' That | Creative Space Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eae8e6",
+                        "surface-container": "#f0edeb",
+                        "on-background": "#1b1c1b",
+                        "primary-fixed": "#ffdbd0",
+                        "primary-container": "#e8967d",
+                        "on-primary-fixed-variant": "#713522",
+                        "inverse-on-surface": "#f3f0ee",
+                        "inverse-surface": "#30302f",
+                        "on-tertiary-container": "#4f3c22",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#574329",
+                        "surface-container-low": "#f6f3f1",
+                        "inverse-primary": "#ffb59e",
+                        "on-secondary-container": "#6a615c",
+                        "on-surface-variant": "#53433f",
+                        "tertiary-container": "#c2a685",
+                        "secondary-container": "#eaddd7",
+                        "outline-variant": "#d9c2bb",
+                        "primary-fixed-dim": "#ffb59e",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#211a17",
+                        "error": "#ba1a1a",
+                        "primary": "#8e4c38",
+                        "on-secondary-fixed-variant": "#4d4541",
+                        "surface-variant": "#e5e2e0",
+                        "surface": "#fcf9f7",
+                        "on-surface": "#1b1c1b",
+                        "tertiary-fixed": "#fcdeba",
+                        "secondary": "#665c58",
+                        "on-tertiary-fixed": "#281903",
+                        "background": "#fcf9f7",
+                        "on-primary-fixed": "#390b01",
+                        "on-primary-container": "#682e1c",
+                        "surface-dim": "#dcd9d8",
+                        "surface-tint": "#8e4c38",
+                        "tertiary-fixed-dim": "#dfc29f",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#d1c4be",
+                        "outline": "#86736e",
+                        "surface-container-highest": "#e5e2e0",
+                        "secondary-fixed": "#ede0da",
+                        "surface-bright": "#fcf9f7",
+                        "tertiary": "#715b3e"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body { font-family: 'Inter', sans-serif; background-color: #fcf9f7; color: #1b1c1b; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .sketch-border { border: 2px solid #1b1c1b; border-radius: 2px; }
+        .tape-element {
+            position: absolute;
+            width: 80px;
+            height: 24px;
+            background: rgba(232, 150, 125, 0.3);
+            transform: rotate(-3deg);
+            z-index: 10;
+        }
+        .hand-drawn-line {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 25 0 50 10 T 100 10' fill='none' stroke='%238e4c38' stroke-width='2'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            height: 10px;
+        }
+        .paper-stack {
+            box-shadow: 2px 2px 0 #1b1c1b, 4px 4px 0 #e8967d;
+        }
+        .rough-border {
+            clip-path: polygon(0% 2%, 100% 0%, 98% 100%, 1% 97%);
+        }
+        .floating-pin {
+            width: 12px;
+            height: 12px;
+            background: #8e4c38;
+            border-radius: 50%;
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="bg-surface selection:bg-primary-fixed overflow-x-hidden">
+<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-[800px]">
+<div class="bg-white/80 backdrop-blur-md border-2 border-on-surface p-3 px-6 rounded-full flex justify-between items-center shadow-[4px_4px_0px_#1b1c1b]">
+<div class="text-xl font-black tracking-tighter">BOOKIN' THAT.</div>
+<div class="hidden md:flex items-center gap-x-6">
+<a class="text-xs font-bold uppercase tracking-wider hover:text-primary transition-colors" href="#platform">Platform</a>
+<a class="text-xs font-bold uppercase tracking-wider hover:text-primary transition-colors" href="#spaces">Spaces</a>
+<a class="text-xs font-bold uppercase tracking-wider hover:text-primary transition-colors" href="#pricing">Pricing</a>
+<a class="text-xs font-bold uppercase tracking-wider hover:text-primary transition-colors" href="#contact">Contact</a>
+</div>
+<a class="bg-primary-container text-on-primary-fixed-variant px-5 py-2 rounded-full text-xs font-black uppercase border-2 border-on-surface hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_#1b1c1b] transition-all" href="#contact">
+            Join Now
+        </a>
+</div>
+</nav>
+<main>
+<section class="min-h-screen pt-40 pb-20 px-8 max-w-[1200px] mx-auto relative" id="platform">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<div class="lg:col-span-7 relative">
+<div class="inline-block px-4 py-1 bg-primary text-white font-bold text-xs rotate-[-2deg] mb-8">
+                    WE ARE LIVE! SPACES V2.0
+                </div>
+<h1 class="font-black leading-[0.9] tracking-tight text-on-surface mb-12">
+<span class="text-6xl block mb-2">STOP RUNNING.</span>
+<span class="text-[5rem] md:text-[8rem] block text-primary-container -ml-1">START</span>
+<span class="text-7xl md:text-9xl block italic text-primary">BUILDING.</span>
+</h1>
+<p class="text-xl md:text-2xl font-medium text-on-surface leading-snug max-w-lg mb-10">
+                    The software that <span class="underline decoration-primary decoration-4">actually gets out of the way</span>. Beautiful booking for spaces with a soul.
+                </p>
+<div class="flex flex-wrap gap-6 items-center">
+<button class="bg-primary text-white px-10 py-5 rounded-sm font-black text-xl paper-stack border-2 border-on-surface hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                        START FREE TRIAL
+                    </button>
+<div class="relative group">
+<span class="absolute -top-6 left-0 text-xs font-bold text-primary italic rotate-[-5deg]">See it in action →</span>
+<button class="underline font-bold text-lg hover:text-primary">Watch the Vibe</button>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 relative mt-12 lg:mt-0">
+<div class="relative w-full aspect-[4/5]">
+<div class="absolute inset-0 bg-surface-container rotate-3 border-2 border-on-surface p-3 shadow-xl">
+<div class="tape-element -top-4 left-1/2 -translate-x-1/2"></div>
+<img alt="Coworking Space" class="w-full h-full object-cover grayscale-[20%] sepia-[10%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD66O4Tc_cIsWHMf2VWUbFTPch46AYhJuSH2B-mDoVzr1Aehn0Y_B7UAOVa5_yCxHcC6geY6Wo0FMGIUIOizK4psiRhfSLgGN8mXEYlhw7oYT1SZ0bqUD4JeiVAl51AfmOuLPoUn1aMpQ9uLCFtJc0aMzwWGcGw4U8ezTu_Ygneju57s0nhzj2i3QzRP53uwioaG-YAQJNtqF_ITtUQAwSRmD4CcNIOWV67UbXtHtnugI4w1FJOFJkvYnmkE2M19C-w13q60-BL8pQ"/>
+<div class="absolute bottom-6 left-6 bg-white p-2 border border-on-surface text-[10px] font-bold uppercase rotate-[-2deg]">
+                            Community Focus / 001
+                        </div>
+</div>
+<div class="absolute -bottom-10 -left-12 w-2/3 aspect-square bg-white -rotate-6 border-2 border-on-surface p-2 shadow-2xl hidden md:block">
+<div class="tape-element -right-4 top-1/2 rotate-90 w-12 opacity-50"></div>
+<img alt="Work moment" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_yWqXT-1lFhOLlxSgQ5KJxy-3Lq_DSCcUr6Wl66Vn6QSWuSNdVprII7H5-09QuHYivIdarFgBglFLAC80lUdzFcK7sPFWo00v5L-obOW7X8u_zW4YcUNNR50asHpvWDooIprvlrXwF22kvjf-OafF4WEtOaRbRFWtei9J2G7xCVnzxJQpxyxtyvL2w70KQAi5PHs3SWdIg7xf6LKGkXG9gboAlrsqjiW0vFqAbfqKJpU7R3cek8xxm2XqtzxfKf5-rfGB_N-kDNI"/>
+</div>
+<div class="absolute -top-10 -right-4 w-24 h-24 hidden lg:block">
+<span class="material-symbols-outlined text-primary text-6xl rotate-45">ads_click</span>
+<p class="text-[10px] font-bold text-on-surface-variant max-w-[80px] leading-tight mt-2">ONE CLICK TO HEAVEN</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 px-8 overflow-hidden bg-surface-container-low">
+<div class="max-w-[1140px] mx-auto relative">
+<h2 class="text-4xl md:text-6xl font-black mb-24 text-center max-w-2xl mx-auto leading-tight">
+                Designed for people who <span class="bg-primary-fixed px-2">actually use it.</span>
+</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="relative group">
+<div class="bg-white p-8 border-2 border-on-surface -rotate-1 group-hover:rotate-0 transition-transform h-full">
+<div class="floating-pin"></div>
+<div class="text-primary-container mb-6">
+<span class="material-symbols-outlined text-5xl">edit_square</span>
+</div>
+<h3 class="text-2xl font-extrabold mb-4 uppercase">Logic on your terms.</h3>
+<p class="text-on-secondary-container leading-relaxed">Buffers, custom pricing, resource grouping. We don't force a workflow on you. You draw the lines.</p>
+</div>
+</div>
+<div class="relative group mt-8 md:mt-16">
+<div class="bg-white p-8 border-2 border-on-surface rotate-2 group-hover:rotate-0 transition-transform h-full">
+<div class="floating-pin"></div>
+<div class="text-primary mb-6">
+<span class="material-symbols-outlined text-5xl">auto_awesome</span>
+</div>
+<h3 class="text-2xl font-extrabold mb-4 uppercase">Ghost Mode Automation.</h3>
+<p class="text-on-secondary-container leading-relaxed">Invoices, reminders, door access codes. It all happens while you're drinking your second coffee.</p>
+</div>
+</div>
+<div class="relative group">
+<div class="bg-white p-8 border-2 border-on-surface -rotate-2 group-hover:rotate-0 transition-transform h-full">
+<div class="floating-pin"></div>
+<div class="text-tertiary mb-6">
+<span class="material-symbols-outlined text-5xl">branding_watermark</span>
+</div>
+<h3 class="text-2xl font-extrabold mb-4 uppercase">Zero Bad Branding.</h3>
+<p class="text-on-secondary-container leading-relaxed">No "Powered by" badges. Custom domains. Your fonts. Your soul. We just provide the plumbing.</p>
+</div>
+</div>
+</div>
+<div class="hidden md:block absolute top-1/2 left-0 w-full hand-drawn-line opacity-20 -z-10"></div>
+</div>
+</section>
+<section class="py-32 px-8 bg-surface relative" id="spaces">
+<div class="max-w-[1200px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div>
+<span class="text-xs font-black uppercase tracking-widest text-primary mb-2 block">Live Portfolio</span>
+<h2 class="text-6xl md:text-8xl font-black leading-none">THE CANVAS.</h2>
+</div>
+<p class="max-w-xs text-on-surface-variant font-bold text-sm italic">
+                    "We're not just a platform; we're the background for your community's best moments."
+                </p>
+</div>
+<div class="relative grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<div class="md:col-span-6 md:col-start-4 relative z-20">
+<div class="bg-white border-[3px] border-on-surface p-4 shadow-[12px_12px_0px_#8e4c38]">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-on-surface text-white rounded-full flex items-center justify-center font-black text-xl">F.</div>
+<div>
+<h4 class="font-black text-xl uppercase">Fikir Coworking</h4>
+<p class="text-xs font-bold text-on-surface-variant">Ağ Şəhər &amp; Elmlər Akademiyası</p>
+</div>
+</div>
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter border border-green-700">Live Partner</span>
+</div>
+<div class="aspect-video bg-surface-container-high mb-6 overflow-hidden rough-border">
+<img alt="Fikir Coworking Interior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYKSAG5saZ7iwVEHZ4dJidGwSceMG7LWGpU1sgsxhkrShX8OoZpyhbZl5MCH520jAlOT6ygLfuZPlpR021iGcs9hPUZl32sG5iaBgKKdcRRIqv761Wu5RnI2MhPvcsS_AQCcSqBrkbrdX9xmRo17_TM_NXSM5rehTCVZEcQeDE2RS5g7ZgxtOB9rI1jEMP57qpCziLvuzETUKqRbQNpnUX0oird_Vx-tKiUVwxgkPF2-9mmKj__PkTjGpTQ5Wq8TIvg26oJJYv5XY"/>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-xs font-bold italic">Active Since 2023</p>
+<a class="bg-on-surface text-white px-6 py-2 text-sm font-black uppercase hover:bg-primary transition-colors" href="https://fikir.bookinthat.com" target="_blank">
+                                Explore Space →
+                            </a>
+</div>
+</div>
+<div class="tape-element -top-3 -right-6 rotate-12 bg-primary/20"></div>
+<div class="tape-element -bottom-3 -left-6 -rotate-6 bg-primary/20"></div>
+</div>
+<div class="md:col-span-3 md:absolute md:-left-4 md:top-20 z-10">
+<div class="bg-surface-container border-2 border-on-surface border-dashed p-6 rotate-[-5deg] grayscale">
+<div class="aspect-square bg-surface-variant mb-4 flex items-center justify-center border border-on-surface/20">
+<span class="material-symbols-outlined text-4xl opacity-30">add_photo_alternate</span>
+</div>
+<h5 class="font-black text-sm uppercase opacity-50">Coming Soon: The Loft</h5>
+<p class="text-[10px] font-bold opacity-40 mt-1">ESTIMATED Q3 2025</p>
+</div>
+</div>
+<div class="md:col-span-3 md:absolute md:-right-4 md:bottom-20 z-10">
+<div class="bg-primary-fixed p-6 rotate-[7deg] shadow-lg">
+<div class="w-3 h-3 bg-on-surface/20 rounded-full mx-auto mb-4"></div>
+<h5 class="font-black text-center text-sm uppercase mb-2">Next Hub: Berlin</h5>
+<p class="text-[10px] font-bold text-center leading-tight">PRE-LAUNCH PHASE. WE'RE CURRENTLY DRAFTING THE FLOORPLAN.</p>
+<div class="mt-4 border-t border-on-surface/10 pt-4 flex justify-center">
+<span class="material-symbols-outlined text-2xl">pending</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 px-8 bg-on-surface text-white" id="pricing">
+<div class="max-w-[900px] mx-auto">
+<div class="mb-20">
+<h2 class="text-5xl md:text-8xl font-black mb-8 leading-none">NO<br/><span class="text-primary-container italic">NONSENSE</span><br/>PRICING.</h2>
+<p class="text-xl opacity-60 font-medium">Why settle for 'good enough' when you can have intentional?</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border border-white/10">
+<div class="p-12">
+<div class="text-xs font-black uppercase tracking-widest opacity-40 mb-10">THE OTHERS</div>
+<ul class="space-y-6">
+<li class="flex items-center gap-3 opacity-50">
+<span class="material-symbols-outlined text-error">close</span>
+<span class="text-sm font-bold">Standard SaaS UI</span>
+</li>
+<li class="flex items-center gap-3 opacity-50">
+<span class="material-symbols-outlined text-error">close</span>
+<span class="text-sm font-bold">Generic Client Forms</span>
+</li>
+<li class="flex items-center gap-3 opacity-50">
+<span class="material-symbols-outlined text-error">close</span>
+<span class="text-sm font-bold">Hours of Manual Setup</span>
+</li>
+<li class="flex items-center gap-3 opacity-50">
+<span class="material-symbols-outlined text-error">close</span>
+<span class="text-sm font-bold">Robot Support Tickets</span>
+</li>
+</ul>
+</div>
+<div class="p-12 bg-primary/10 relative">
+<div class="absolute top-6 right-6 bg-primary-container text-on-surface px-3 py-1 text-[10px] font-black uppercase rotate-3">The Real Deal</div>
+<div class="text-xs font-black uppercase tracking-widest text-primary-container mb-10">BOOKIN' THAT</div>
+<ul class="space-y-6">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">check_circle</span>
+<span class="text-sm font-black">Editorial High-End UI</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">check_circle</span>
+<span class="text-sm font-black">Bespoke Boutique Experience</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">check_circle</span>
+<span class="text-sm font-black">15-Minute Easy Onboarding</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">check_circle</span>
+<span class="text-sm font-black">Human Concierge Support</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="mt-20 flex flex-col items-center">
+<div class="text-7xl font-black text-primary-container mb-4">$49<span class="text-2xl opacity-40">/mo</span></div>
+<p class="text-sm font-bold opacity-60 mb-10">FLAT FEE. UNLIMITED BOOKINGS. NO PERCENTAGE CUT.</p>
+<button class="bg-primary-container text-on-surface px-12 py-5 text-xl font-black uppercase border-2 border-white hover:bg-white transition-colors">
+                    CLAIM YOUR SPOT
+                </button>
+</div>
+</div>
+</section>
+<section class="py-40 px-8 relative bg-primary-fixed overflow-hidden" id="contact">
+<div class="max-w-[1140px] mx-auto text-center relative z-10">
+<h2 class="text-6xl md:text-9xl font-black mb-12 leading-none tracking-tighter">LET'S GET<br/><span class="text-primary italic">COOKING.</span></h2>
+<p class="text-2xl font-bold max-w-xl mx-auto mb-16 text-on-primary-fixed-variant">Ready to transform your space management from a chore into a superpower?</p>
+<form class="max-w-md mx-auto relative">
+<div class="flex flex-col md:flex-row gap-4">
+<input class="flex-1 px-6 py-4 border-2 border-on-surface bg-white text-on-surface font-bold focus:outline-none focus:ring-0" placeholder="Your best email..." type="email"/>
+<button class="bg-on-surface text-white px-8 py-4 font-black uppercase border-2 border-on-surface hover:bg-primary transition-all shadow-[4px_4px_0px_#8e4c38]">
+                        GO!
+                    </button>
+</div>
+<p class="mt-6 text-xs font-black uppercase tracking-widest opacity-60">NO CREDIT CARD. NO RISK. ALL VIBES.</p>
+</form>
+</div>
+<div class="absolute top-20 left-10 w-48 aspect-video bg-white border-2 border-on-surface rotate-[-15deg] hidden lg:block opacity-30">
+<img alt="community" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9-jeu0hIRW_zMfY9XEBrKvQqOwFRkAxT4BVVGgNsLFY-6I7CMtctSyZfp2utWzMnhQQsZJUELAfCfTOro-O2T8u9NRhOeAEEW-ui5FFMUm9hfyamVz5Sn77aj34Sghs_aeuNodLuYpwZ4bjeiUl9KtkApcfiasM1O9apDvjgpnDM8Rs9TAwRIybgbLHVwlPNY6mhtiilE75WsSJwu_gCXQp6Umzp-liiThdlCqDg3z74ZoHKxQiQwZRd2_keBxuhCpIzDziueBcw"/>
+</div>
+<div class="absolute bottom-20 right-10 w-48 aspect-video bg-white border-2 border-on-surface rotate-[15deg] hidden lg:block opacity-30">
+<img alt="meeting" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh-j0AIqgDJciCaslOnslBi8HFe_S0EQDaOwBVSz-0-FUVY9R4erGsdSfGc5LVrwvKYpj88GlvQjUAuo4G_bVmsQoekHzKxMIgYdL4k6bkWEFck-Y8WqjNPAazpynmYvWNN4kdfsxLMBy5wwWBcjEA07q8CNGRyUKkYLeL2wyZkvLzTEEig_nNO2bZRg1_AnWLbILMOkg_y8DkY3s9PoHmPD09VusKrYmvcfG8_MDpD5vnzKfYqk4EWnZKmC7Gf6CB0pYmXlJCXRc"/>
+</div>
+</section>
+</main>
+<footer class="bg-white border-t-2 border-on-surface py-20 px-8">
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+<div class="md:col-span-2">
+<div class="text-3xl font-black mb-6">BOOKIN' THAT.</div>
+<p class="text-on-surface-variant font-bold max-w-sm mb-10 italic">
+                The editorial-first booking platform for the design-conscious operator who values quality over quantity.
+            </p>
+<div class="flex gap-4">
+<div class="w-10 h-10 border-2 border-on-surface rounded-full flex items-center justify-center hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-lg">public</span>
+</div>
+<div class="w-10 h-10 border-2 border-on-surface rounded-full flex items-center justify-center hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-lg">alternate_email</span>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<h5 class="font-black text-xs uppercase tracking-[0.2em] opacity-40">Navigate</h5>
+<div class="flex flex-col gap-4">
+<a class="font-bold hover:text-primary" href="#platform">Platform</a>
+<a class="font-bold hover:text-primary" href="#spaces">Spaces</a>
+<a class="font-bold hover:text-primary" href="#pricing">Pricing</a>
+<a class="font-bold hover:text-primary" href="#contact">Contact</a>
+</div>
+</div>
+<div class="flex flex-col justify-between items-start md:items-end">
+<div class="text-right">
+<span class="text-[10px] font-black uppercase opacity-40 block mb-2">Designed With Heart By</span>
+<p class="font-black text-lg">Huseyn Abizadeh</p>
+</div>
+<p class="text-[10px] font-bold opacity-30 mt-auto">© 2025 BOOKIN' THAT. ALL RIGHTS RESERVED. MADE BY HUSEYN ABIZADEH.</p>
+</div>
+</div>
+</footer>
+
+</body></html>
