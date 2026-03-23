@@ -49,28 +49,9 @@ module.exports = async function handler(req, res) {
               <p style="margin: 0 0 32px 0; font-size: 16px; line-height: 1.6; color: #53433f;">
                 We got your request and we're genuinely excited about it. Someone from our team will reach out shortly — no bots, no auto-replies, just a real human.
               </p>
-              <table role="presentation" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="background-color: #1b1c1b; border: 2px solid #1b1c1b;">
-                    <a href="https://bookinthat.com" target="_blank" style="display: inline-block; padding: 14px 28px; color: #ffffff; font-size: 12px; font-weight: 900; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;">
-                      EXPLORE THE PLATFORM &rarr;
-                    </a>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding: 0 32px 40px 32px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="border-left: 3px solid #e8967d; padding: 16px 0 16px 20px;">
-                    <p style="margin: 0; font-size: 14px; font-style: italic; color: #86736e; line-height: 1.5;">
-                      &ldquo;We&rsquo;re not just a platform &mdash; we&rsquo;re the background for your community&rsquo;s best moments.&rdquo;
-                    </p>
-                  </td>
-                </tr>
-              </table>
+              <p style="margin: 0; font-size: 15px; color: #86736e; font-style: italic;">
+                In the meantime, take care of yourself.
+              </p>
             </td>
           </tr>
           <tr>
