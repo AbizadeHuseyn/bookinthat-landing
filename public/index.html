@@ -112,13 +112,19 @@
             transform: translateX(-50%);
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-        @keyframes blink {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
+        .rotating-word {
+          opacity: 0;
+          transform: translateY(100%);
+          transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+          will-change: transform, opacity;
         }
-        #typing-cursor {
-          animation: blink 0.7s infinite;
-          font-weight: 900;
+        .rotating-word.active {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .rotating-word.exit-up {
+          opacity: 0;
+          transform: translateY(-100%);
         }
     </style>
 </head>
@@ -150,18 +156,23 @@
   <a href="#contact" class="text-xl font-black uppercase tracking-widest hover:text-primary transition-colors">Contact</a>
 </div>
 <main>
-<section class="min-h-screen pt-40 pb-20 px-8 max-w-[1200px] mx-auto relative" id="platform">
+<section class="min-h-screen pt-40 pb-20 px-8 max-w-[1200px] mx-auto relative overflow-hidden" id="platform">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 <div class="lg:col-span-7 relative">
 <div class="inline-block px-4 py-1 bg-primary text-white font-bold text-xs rotate-[-2deg] mb-8">
                     THE EDITORIAL BOOKING PLATFORM
                 </div>
 <h1 class="font-black leading-[0.9] tracking-tight text-on-surface mb-12">
-<span class="text-6xl md:text-7xl block mb-4">YOUR SPACE</span>
-<span class="text-7xl md:text-9xl block italic text-primary"><span id="typing-text"></span><span id="typing-cursor">|</span></span>
+<span class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl block mb-2">BOOKING SHOULD BE</span>
+<span class="relative block overflow-hidden h-[1.1em] text-5xl sm:text-6xl md:text-8xl lg:text-9xl" id="rotating-container">
+  <span class="rotating-word absolute inset-x-0 font-black text-primary-container" data-index="0">STUNNING.</span>
+  <span class="rotating-word absolute inset-x-0 font-black text-primary-container" data-index="1">EASY.</span>
+  <span class="rotating-word absolute inset-x-0 font-black text-primary-container" data-index="2">DELIBERATE.</span>
+  <span class="rotating-word absolute inset-x-0 font-black text-primary-container" data-index="3">ELECTRIC.</span>
+</span>
 </h1>
 <p class="text-xl md:text-2xl font-medium text-on-surface leading-snug max-w-lg mb-10">
-                    The only booking software designed for operators who care about <span class="underline decoration-primary decoration-4">aesthetics as much as efficiency</span>.
+                    The only platform designed for operators who care about <span class="underline decoration-primary decoration-4">aesthetics as much as efficiency</span>. Zero bad branding. Zero nonsense.
                 </p>
 <div class="flex flex-wrap gap-6 items-center">
 <a href="#contact" class="bg-primary text-white px-10 py-5 rounded-sm font-black text-xl paper-stack border-2 border-on-surface hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all inline-block">
@@ -230,7 +241,7 @@
 <div class="hidden md:block absolute top-1/2 left-0 w-full hand-drawn-line opacity-20 -z-10"></div>
 </div>
 </section>
-<section class="py-32 px-8 bg-surface relative" id="spaces">
+<section class="py-32 px-8 bg-surface relative overflow-hidden" id="spaces">
 <div class="max-w-[1200px] mx-auto">
 <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
 <div>
@@ -418,21 +429,23 @@
 </script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const text = 'DESERVES BETTER.';
-    const el = document.getElementById('typing-text');
-    const cursor = document.getElementById('typing-cursor');
-    let i = 0;
-    setTimeout(() => {
-      const interval = setInterval(() => {
-        if (i < text.length) {
-          el.textContent = text.substring(0, i + 1);
-          i++;
-        } else {
-          clearInterval(interval);
-          setTimeout(() => { if (cursor) cursor.style.display = 'none'; }, 2000);
-        }
-      }, 100);
-    }, 500);
+    const words = document.querySelectorAll('.rotating-word');
+    if (!words.length) return;
+    let current = 0;
+    const total = words.length;
+    words[0].classList.add('active');
+    setInterval(() => {
+      const currentWord = words[current];
+      const next = (current + 1) % total;
+      const nextWord = words[next];
+      currentWord.classList.remove('active');
+      currentWord.classList.add('exit-up');
+      nextWord.classList.remove('exit-up');
+      nextWord.offsetHeight; // force reflow
+      nextWord.classList.add('active');
+      setTimeout(() => { currentWord.classList.remove('exit-up'); }, 600);
+      current = next;
+    }, 2500);
   });
 </script>
 </body></html>
